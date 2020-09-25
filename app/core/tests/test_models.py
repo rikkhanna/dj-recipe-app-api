@@ -21,14 +21,17 @@ class ModelTests(TestCase):
         """Test the email for a new user is normalized """
 
         email = 'test@INDIANADMIN.com'
-        user = get_user_model().objects.create_user(email,'test123')
+        user = get_user_model().objects.create_user(email, 'test123')
         self.assertEqual(user.email, email.lower())
 
     def test_new_user_invalid_email(self):
         """ Test creating user with no email raises error """
-        #make sure that email address is provided and if not raise the ValueError
-        with self.assertRaises(ValueError): # means anything that runs inside this, should raise ValueError and if not that means test fail
-            get_user_model().objects.create_user(None,'test123')
+        # make sure that email address is provided and
+        # if not raise the ValueError
+        with self.assertRaises(ValueError):
+            # means anything that runs inside this and
+            # should raise ValueError and if not that means test fail
+            get_user_model().objects.create_user(None, 'test123')
 
     def test_create_new_superuser(self):
         """ test creating a new superuser """
