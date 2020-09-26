@@ -1,6 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-    PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 
 
 class UserManager(BaseUserManager):
@@ -10,7 +13,7 @@ class UserManager(BaseUserManager):
         # extra_fields means take in any extra parameters that are passed
         """creates and saves a new user"""
         if not email:
-            raise ValueError('Email address is required')
+            raise ValueError("Email address is required")
         user = self.model(email=self.normalize_email(email), **extra_fields)
         # same as creating user model and
         # normalize_email() is a helper function in BaseUserManager
@@ -39,4 +42,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     objects = UserManager()  # creates a new userManager
 
-    USERNAME_FIELD = 'email'  # override the default username fiels to email
+    USERNAME_FIELD = "email"  # override the default username fiels to email
